@@ -1,6 +1,7 @@
 ---
 title: Changelog
 kind: guide
+group: About
 ---
 
 All notable changes to this library will be documented in this file.
