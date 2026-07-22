@@ -2,20 +2,24 @@
 title: CitationWrapper
 kind: class
 longname: CitationWrapper
-description: Construct a CitationWrapper.
+description: The CitationWrapper wraps a single citation in the Phyx document. Based on BibJSON (http://okfnlabs.org/bibjson/).
+group: Wrappers
+order: 8
 ---
 
 # CitationWrapper
 
-<SourceLink href="/source/wrappers/citationwrapper-js/#L12" label="CitationWrapper.js:12" />
+<SourceLink href="/source/wrappers/citationwrapper-js/#L8" label="CitationWrapper.js:8" />
 
-Construct a CitationWrapper.
+The CitationWrapper wraps a single citation in the Phyx document. Based on BibJSON (http\://okfnlabs.org/bibjson/).
 
 ---
 
 ## Constructor
 
 <Signature code="new CitationWrapper(citation): CitationWrapper" />
+
+Construct a CitationWrapper.
 
 ---
 

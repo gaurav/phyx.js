@@ -3,11 +3,13 @@ title: PhyxWrapper
 kind: class
 longname: PhyxWrapper
 description: The PhyxWrapper wraps an entire Phyx document.
+group: Wrappers
+order: 1
 ---
 
 # PhyxWrapper
 
-<SourceLink href="/source/wrappers/phyxwrapper-js/#L20" label="PhyxWrapper.js:20" />
+<SourceLink href="/source/wrappers/phyxwrapper-js/#L21" label="PhyxWrapper.js:21" />
 
 The PhyxWrapper wraps an entire Phyx document.
 
@@ -35,7 +37,7 @@ Wraps an entire PHYX document.
 
 <MemberHeading id="asjsonld" depth="3" name="asJSONLD" sig="asJSONLD(baseIRI?: string): Object" />
 
-<MemberMeta sourceHref="/source/wrappers/phyxwrapper-js/#L102" sourceLabel="PhyxWrapper.js:102" />
+<MemberMeta sourceHref="/source/wrappers/phyxwrapper-js/#L103" sourceLabel="PhyxWrapper.js:103" />
 
 Generate an executable ontology from this Phyx document. The document is mostly in JSON-LD already, except for three important things:
 
@@ -53,7 +55,7 @@ Generate an executable ontology from this Phyx document. The document is mostly 
 
 <MemberHeading id="tordf" depth="3" name="toRDF" sig="toRDF(baseIRI?: string, filePath?: string): Promise.<string>" />
 
-<MemberMeta sourceHref="/source/wrappers/phyxwrapper-js/#L310" sourceLabel="PhyxWrapper.js:310" />
+<MemberMeta sourceHref="/source/wrappers/phyxwrapper-js/#L311" sourceLabel="PhyxWrapper.js:311" />
 
 Generate an executable ontology from this Phyx document as N-Quads. Under the hood, we generate an OWL/JSON-LD representation of this Phyx document, and then convert it into N-Quads so that OWLAPI-supporting tools can directly consume it.
 
@@ -70,7 +72,7 @@ Generate an executable ontology from this Phyx document as N-Quads. Under the ho
 
 <MemberHeading id="normalize" depth="3" name="normalize" sig="normalize()" />
 
-<MemberMeta badges="static" sourceHref="/source/wrappers/phyxwrapper-js/#L68" sourceLabel="PhyxWrapper.js:68" />
+<MemberMeta badges="static" sourceHref="/source/wrappers/phyxwrapper-js/#L69" sourceLabel="PhyxWrapper.js:69" />
 
 Return a provided Phyx document as a normalized JSON document. We ignore most keys -- including keys we don't know -- but any key that can be wrapped by one of the other Wrappers in this package will be wrapped and normalized before being returned.
 
