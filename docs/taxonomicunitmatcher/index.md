@@ -4,7 +4,6 @@ kind: class
 longname: TaxonomicUnitMatcher
 description: "The TaxonomicUnitMatcher matches pairs of taxonomic units and provides a consistent report on: Which taxonomic units have matched, and Why the match occurred. In Model 2.0, we start by using direct matching in OWL, so this should no longer be needed. However, I'll leave this around to provide matching in the Curation Tool UI and in case it's needed again later."
 group: Matchers
-order: 1
 ---
 
 # TaxonomicUnitMatcher

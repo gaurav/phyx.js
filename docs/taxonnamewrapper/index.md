@@ -4,7 +4,6 @@ kind: class
 longname: TaxonNameWrapper
 description: "Wraps a taxon name to provide access to components of the taxon name. This is based on the TDWG TaxonName standard, as at https://github.com/tdwg/ontology/blob/master/ontology/voc/TaxonName.rdf. Every instance of this class is expected to have some combination of the following fields: rdfs:label -- the verbatim taxon name nameComplete -- the complete uninomial, binomial or trinomial name. nomenclaturalCode -- the nomenclatural code under which the complete name should be interpreted. We will also read the following fields if they are present: uninomial: The uninomial name of this taxon, if one is present. genusPart: The genus name. specificEpithet: The specific epithet. infraspecificEpithet: The infraspecific epithet. We wrap whatever we're given, so we won't assume that these fields are actually consistent with each other. However, when one of these fields are set, we overwrite the nameComplete to ensure that they are consistent. Similarly, changing the nameComplete will overwrite the genusPart, specificEpithet and infraspecificEpithet. Note that the TaxonName ontology recommends dc:title instead of rdfs:label; however, I like the idea of using dc:title for documents and rdfs:label for vocabulary terms, so I'm okay with using rdfs:label for the verbatim name."
 group: Wrappers
-order: 6
 ---
 
 # TaxonNameWrapper

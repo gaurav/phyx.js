@@ -4,7 +4,6 @@ kind: class
 longname: TaxonConceptWrapper
 description: "The TaxonConceptWrapper wraps taxon concepts. These are taxonomic units with a type of TaxonomicUnitWrapper.TYPE_TAXON_CONCEPT. They are based on the Taxon Concept ontology at https://github.com/tdwg/ontology/tree/master/ontology/voc. A taxon concept: SHOULD have a hasName property indicating the name this taxon refers to. MAY have accordingTo, describedBy or circumscribedBy to indicate how this taxon concept should be circumscribed. If none of these are present, this taxonomic unit will be considered a taxon rather than a taxon concept (i.e. as a nominal taxon concept, as in https://github.com/darwin-sw/dsw/wiki/ClassTaxon). MAY have nameString and accordingToString properties. We will fall back to these properties if hasName or accordingTo are missing."
 group: Wrappers
-order: 5
 ---
 
 # TaxonConceptWrapper

@@ -4,7 +4,6 @@ kind: class
 longname: PhylorefWrapper
 description: Wraps a phyloreference in a Phyx model, with multiple specifiers and statuses. Includes code for generating the components of a phyloreference expression in OWL.
 group: Wrappers
-order: 2
 ---
 
 # PhylorefWrapper

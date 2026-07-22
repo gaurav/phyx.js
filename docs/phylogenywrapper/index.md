@@ -4,7 +4,6 @@ kind: class
 longname: PhylogenyWrapper
 description: Wraps a Phylogeny in a PHYX file and provides access to node, node labels and other information. Remember that a Phylogeny also has the additionalNodeProperties object which provides additional properties for nodes.
 group: Wrappers
-order: 3
 ---
 
 # PhylogenyWrapper

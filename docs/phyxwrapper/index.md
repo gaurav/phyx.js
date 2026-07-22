@@ -9,7 +9,7 @@ order: 1
 
 # PhyxWrapper
 
-<SourceLink href="/source/wrappers/phyxwrapper-js/#L21" label="PhyxWrapper.js:21" />
+<SourceLink href="/source/wrappers/phyxwrapper-js/#L24" label="PhyxWrapper.js:24" />
 
 The PhyxWrapper wraps an entire Phyx document.
 
@@ -37,7 +37,7 @@ Wraps an entire PHYX document.
 
 <MemberHeading id="asjsonld" depth="3" name="asJSONLD" sig="asJSONLD(baseIRI?: string): Object" />
 
-<MemberMeta sourceHref="/source/wrappers/phyxwrapper-js/#L103" sourceLabel="PhyxWrapper.js:103" />
+<MemberMeta sourceHref="/source/wrappers/phyxwrapper-js/#L106" sourceLabel="PhyxWrapper.js:106" />
 
 Generate an executable ontology from this Phyx document. The document is mostly in JSON-LD already, except for three important things:
 
@@ -55,7 +55,7 @@ Generate an executable ontology from this Phyx document. The document is mostly 
 
 <MemberHeading id="tordf" depth="3" name="toRDF" sig="toRDF(baseIRI?: string, filePath?: string): Promise.<string>" />
 
-<MemberMeta sourceHref="/source/wrappers/phyxwrapper-js/#L311" sourceLabel="PhyxWrapper.js:311" />
+<MemberMeta sourceHref="/source/wrappers/phyxwrapper-js/#L314" sourceLabel="PhyxWrapper.js:314" />
 
 Generate an executable ontology from this Phyx document as N-Quads. Under the hood, we generate an OWL/JSON-LD representation of this Phyx document, and then convert it into N-Quads so that OWLAPI-supporting tools can directly consume it.
 
@@ -72,7 +72,7 @@ Generate an executable ontology from this Phyx document as N-Quads. Under the ho
 
 <MemberHeading id="normalize" depth="3" name="normalize" sig="normalize()" />
 
-<MemberMeta badges="static" sourceHref="/source/wrappers/phyxwrapper-js/#L69" sourceLabel="PhyxWrapper.js:69" />
+<MemberMeta badges="static" sourceHref="/source/wrappers/phyxwrapper-js/#L72" sourceLabel="PhyxWrapper.js:72" />
 
 Return a provided Phyx document as a normalized JSON document. We ignore most keys -- including keys we don't know -- but any key that can be wrapped by one of the other Wrappers in this package will be wrapped and normalized before being returned.
 

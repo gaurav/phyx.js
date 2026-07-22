@@ -4,7 +4,6 @@ kind: class
 longname: CacheManager
 description: phyx.js needs to cache several kinds of data to avoid reparsing them over and over again, such as scientific names. This CacheManager provides that facility, and allows users of this library to clear the cache as needed. We might want to replace this with a cache that limits the amount of memory, such as https://www.npmjs.com/package/safe-memory-cache.
 group: Utilities
-order: 1
 ---
 
 # CacheManager

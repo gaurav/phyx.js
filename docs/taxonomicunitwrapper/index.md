@@ -4,7 +4,6 @@ kind: class
 longname: TaxonomicUnitWrapper
 description: "The TaxonomicUnitWrapper wraps taxonomic units, whether on a node or being used as a specifier on a phyloreference. Every taxonomic unit can additionally be wrapped by more specific classes, such as {@link TaxonConceptWrapper} or {@link SpecimenWrapper}. We can determine which type it is based on its '@type' and whether it includes: TaxonomicUnitWrapper.TYPE_TAXON_CONCEPT =&gt; {@link TaxonConceptWrapper} TaxonomicUnitWrapper.TYPE_SPECIMEN =&gt; {@link SpecimenWrapper} TaxonomicUnitWrapper.TYPE_APOMORPHY =&gt; reserved for future use TaxonomicUnitWrapper.TYPE_PHYLOREF =&gt; reserved for future use It also contains static methods for extracting taxonomic units from arbitrary strings, such as phylogeny labels. Every taxonomic unit SHOULD have an rdfs:label and MAY include a dcterm:description to describe it in human-readable terms. It MUST include a '@type' that specifies what type of taxonomic unit it is. Taxonomic units may be specified with only an '@id' or a set of '@id's, which indicate external references."
 group: Wrappers
-order: 4
 ---
 
 # TaxonomicUnitWrapper

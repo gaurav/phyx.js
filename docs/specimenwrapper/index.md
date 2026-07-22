@@ -4,7 +4,6 @@ kind: class
 longname: SpecimenWrapper
 description: "The SpecimenWrapper wraps specimen taxonomic units. These can be identified with a '@type' of SpecimenWrapper.TYPE_SPECIMEN (which is currently https://dwc.tdwg.org/terms/#occurrence). TaxonomicUnitWrapper.TYPE_SPECIMEN: A specimen. Based on http://rs.tdwg.org/dwc/terms/Occurrence Should have a occurrenceID with the occurrence identifier. Should have a basisOfRecord to indicate what sort of occurrence this is. Since TaxonNameWrapper follows the TDWG ontology, we'd love to do the same for SpecimenWrapper, but unfortunately the TaxonOccurrence ontology has been deprecated (see https://github.com/tdwg/ontology). Therefore, it instead improvises a representation based on dwc:Occurrence."
 group: Wrappers
-order: 7
 ---
 
 # SpecimenWrapper

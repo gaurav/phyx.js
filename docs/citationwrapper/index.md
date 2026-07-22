@@ -4,7 +4,6 @@ kind: class
 longname: CitationWrapper
 description: The CitationWrapper wraps a single citation in the Phyx document. Based on BibJSON (http://okfnlabs.org/bibjson/).
 group: Wrappers
-order: 8
 ---
 
 # CitationWrapper
