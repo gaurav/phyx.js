@@ -12,6 +12,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased](https://github.com/phyloref/phyx.js/compare/v1.2.0...master)
 
+- PR #166: Replaced esdoc, which has had no release since 2018, with jsdoc and clean-jsdoc-theme. The documentation at [https://www.phyloref.org/phyx.js/](https://www.phyloref.org/phyx.js/) is now served from clean URLs, so links into the old pages need updating, and `PhylogenyWrapper` is published for the first time — esdoc and jsdoc alike had been skipping it as undocumented.
+- PR #179: Stopped committing generated documentation. The JSON-LD contexts and JSON Schemas moved from `docs/context/` to `context/` at the repository root, changing their path within the published NPM package; they continue to be served from [https://www.phyloref.org/phyx.js/context/](https://www.phyloref.org/phyx.js/context/).
+
 ## [1.2.1](https://github.com/phyloref/phyx.js/compare/v1.2.0...v1.2.1) - 2025-07-28
 
 - PR #152: Upraded packages using `npm upgrade`.
