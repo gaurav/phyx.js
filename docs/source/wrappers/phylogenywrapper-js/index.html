@@ -1,0 +1,509 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="generator" content="clean-jsdoc-theme 5.0.8" /><title>wrappers/PhylogenyWrapper.js | @phyloref/phyx.js</title><script>(function(){try{var d=document.documentElement;var t=localStorage.getItem('theme');if(t==='dark'){d.dataset.theme='dark'}else{d.dataset.theme='light'}var fs=localStorage.getItem('clean-font-size');if(fs==='sm'){d.style.fontSize='15px'}else if(fs==='lg'){d.style.fontSize='18px'}var ls=localStorage.getItem('clean-line-spacing');if(ls==='compact'){d.style.setProperty('--clean-line-height','1.4')}else if(ls==='relaxed'){d.style.setProperty('--clean-line-height','1.8')}}catch(_){}}());</script><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;600;700&amp;family=Roboto:wght@400;500;600;700&amp;display=swap" /><link rel="stylesheet" href="/phyx.js/_assets/styles.mrvs2v6p-6e0e03f0.css" /></head><body><div class="flex min-h-screen flex-col bg-background text-(--clean-fg)"><header class="sticky top-0 z-30 border-b border-(--clean-border) bg-background"><div class="mx-auto flex h-16 w-full min-w-0 max-w-screen-2xl items-center gap-4 px-4"><a href="/phyx.js" class="flex min-w-0 items-center pl-3 no-underline"><span class="truncate text-lg font-heading font-bold text-(--clean-fg)">@phyloref/phyx.js</span></a><div class="ml-auto flex shrink-0 items-center gap-1"><div class="flex items-center gap-1"><div data-island="cmdk" data-island-id="i1"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-muted-foreground hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Search" title="Search (Ctrl K)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg></button></div></div><div class="hidden items-center gap-1 md:flex"><div data-island="theme-toggle" data-island-id="i2"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-muted-foreground hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button" aria-label="Switch to dark theme" title="Toggle theme"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button></div><div data-island="settings" data-island-id="i3"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-muted-foreground hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Settings" title="Settings"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"></path><circle cx="12" cy="12" r="3"></circle></svg></button></div></div><div class="md:hidden"><div data-island="mobile-nav" data-island-id="i4"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-muted-foreground hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Open navigation" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-right" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M15 3v18"></path></svg></button></div></div></div></div></header><div class="mx-auto grid w-full max-w-screen-2xl flex-1 grid-cols-1 gap-6 px-4 py-6 md:grid-cols-[16rem_minmax(0,1fr)]"><aside class="hidden md:block"><div class="sticky overflow-y-auto [scrollbar-gutter:stable] pr-2 top-20 max-h-[calc(100vh-6rem)]"><div data-island="sidebar" data-island-id="i5"><nav aria-label="Documentation navigation" class="text-(--clean-fg)"><ul class="m-0 list-none p-0"><li class="my-0.5"><a href="https://github.com/phyloref/phyx.js" target="_blank" rel="noopener noreferrer" class="group flex gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)] items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link shrink-0" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg><span class="min-w-0 wrap-break-words">GitHub</span></a></li><li class="my-0.5"><a href="https://www.npmjs.com/package/@phyloref/phyx" target="_blank" rel="noopener noreferrer" class="group flex gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)] items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link shrink-0" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg><span class="min-w-0 wrap-break-words">npm</span></a></li></ul><hr class="my-3 border-(--clean-border)"/><div class="mt-4 first:mt-0"><div class="mb-1 py-1.5 px-3 text-sm font-bold text-(--clean-fg)">Tutorials</div><ul class="m-0 list-none p-0"><li class="my-0.5"><a href="/phyx.js/tutorials/changelog" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">Changelog</span></a></li><li class="my-0.5"><a href="/phyx.js/tutorials/introduction" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">Introduction to phyx.js</span></a></li></ul></div><div class="mt-4 first:mt-0"><div class="mb-1 py-1.5 px-3 text-sm font-bold text-(--clean-fg)">Classes</div><ul class="m-0 list-none p-0"><li class="my-0.5"><a href="/phyx.js/cachemanager" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">CacheManager</span></a></li><li class="my-0.5"><a href="/phyx.js/citationwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">CitationWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/phylorefwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">PhylorefWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/phyxwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">PhyxWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/specimenwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">SpecimenWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/taxonconceptwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">TaxonConceptWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/taxonnamewrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">TaxonNameWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/taxonomicunitmatcher" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">TaxonomicUnitMatcher</span></a></li><li class="my-0.5"><a href="/phyx.js/taxonomicunitwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">TaxonomicUnitWrapper</span></a></li></ul></div></nav></div></div></aside><main class="min-w-0 px-4 md:px-8 lg:px-12"><div data-island="code-viewer" data-island-id="i0"><div class="my-4 overflow-hidden rounded-lg border border-(--clean-border) bg-(--clean-bg)"><div class="flex items-center justify-between border-b border-(--clean-border) bg-(--clean-bg-muted) px-3 py-2 text-sm"><span class="font-mono text-(--clean-fg)">wrappers/PhylogenyWrapper.js</span><span class="text-xs text-(--clean-fg-muted)">javascript</span></div><div class="h-[calc(100vh-13rem)] min-h-[24rem]"><pre class="m-0 h-full overflow-auto whitespace-pre p-4 text-sm leading-relaxed text-(--clean-fg)"><code class="language-javascript">/**
+ * PhylogenyWrapper
+ */
+
+const { has, cloneDeep } = require('lodash');
+
+// Used to parse Newick strings.
+const newickJs = require('newick-js');
+
+// OWL terms to be used here.
+const owlterms = require('../utils/owlterms');
+
+const { TaxonomicUnitWrapper } = require('./TaxonomicUnitWrapper');
+const { TaxonomicUnitMatcher } = require('../matchers/TaxonomicUnitMatcher');
+const { CitationWrapper } = require('./CitationWrapper');
+
+class PhylogenyWrapper {
+  // Wraps a Phylogeny in a PHYX file and provides access to node, node labels
+  // and other information. Remember that a Phylogeny also has the
+  // additionalNodeProperties object which provides additional properties for
+  // nodes.
+
+  constructor(phylogeny, defaultNomenCode = owlterms.UNKNOWN_CODE) {
+    // Construct a phylogeny based on a Phylogeny object in a PHYX phylogeny.
+    // Note that this version ONLY uses the `newick` property to determine the
+    // phylogeny: if other representations are included (such as a node-based
+    // format, as used in JSON-LD), they will be ignored and possibly overwritten
+    // during export. So, to update the phylogeny, please only update the newick
+    // string!
+    //
+    // This ensures that we don't need to reconcile between different
+    // possible representations of a phylogeny.
+    this.phylogeny = phylogeny;
+    this.defaultNomenCode = defaultNomenCode;
+  }
+
+  /**
+   * Return a normalized form of the phylogeny.
+   */
+  static normalize(phylogeny) {
+    const normalizedPhylogeny = cloneDeep(phylogeny);
+
+    // We could normalize the Newick string, but that doesn't seem very nice.
+
+    // Normalize the source if there is one.
+    if ('source' in phylogeny) {
+      normalizedPhylogeny.source = CitationWrapper.normalize(
+        phylogeny.source || {},
+      );
+    }
+
+    return normalizedPhylogeny;
+  }
+
+  static getErrorsInNewickString(newick) {
+    // Given a Newick string, return a list of errors found in parsing this
+    // string. The errors are returned as a list of objects, each of which
+    // has two properties:
+    //  - title: A short title of the error, distinct for each type of error.
+    //  - message: A longer description of the error, which might include
+    //    information specific to a particular error.
+    //
+    // We try to order errors from most helpful ('Unbalanced parentheses in
+    // Newick string') to least helpful ('Error parsing phylogeny').
+    const newickTrimmed = newick.trim();
+    const errors = [];
+
+    // Look for an empty Newick string.
+    if (
+      newickTrimmed === '' ||
+      newickTrimmed === '()' ||
+      newickTrimmed === '();'
+    ) {
+      // None of the later errors are relevant here, so bail out now.
+      return [
+        {
+          title: 'No phylogeny entered',
+          message: 'Click on &quot;Edit as Newick&quot; to enter a phylogeny below.',
+        },
+      ];
+    }
+
+    // Look for an unbalanced Newick string.
+    let parenLevels = 0;
+    for (let x = 0; x &lt; newickTrimmed.length; x += 1) {
+      if (newickTrimmed[x] === '(') parenLevels += 1;
+      if (newickTrimmed[x] === ')') parenLevels -= 1;
+    }
+
+    if (parenLevels !== 0) {
+      errors.push({
+        title: 'Unbalanced parentheses in Newick string',
+        message:
+          parenLevels > 0
+            ? `You have ${parenLevels} too many open parentheses`
+            : `You have ${-parenLevels} too few open parentheses`,
+      });
+    }
+
+    // Finally, try parsing it with newickJs.parse() and see if we get an error.
+    try {
+      newickJs.parse(newickTrimmed);
+    } catch (ex) {
+      errors.push({
+        title: 'Error parsing phylogeny',
+        message: `An error occured while parsing this phylogeny: ${ex.message}`,
+      });
+    }
+
+    return errors;
+  }
+
+  static recurseNodes(node, func, nodeCount = 0, parentCount = undefined) {
+    // Recurse through PhyloTree nodes, executing function on each node.
+    //  - node: The node to recurse from. The function will be called on node
+    //          *before* being called on its children.
+    //  - func: The function to call on `node` and all of its children.
+    //  - nodeCount: `node` will be called with this nodeCount. All of its
+    //          children will be called with consecutively increasing nodeCounts.
+    //  - parentCount: The nodeCount associated with the parent of this node
+    //          within this run of recurseNodes. For instance, immediate children
+    //          of `node` will have a parentCount of 0. By default, `node` itself
+    //          will have a parentCount of `undefined`.
+    // When the function `func` is called, it is given three arguments:
+    //  - The current node object (initially: `node`)
+    //  - The count of the current node object (initially: `nodeCount`)
+    //  - The parent count of the current node object (initially: `parentCount`)
+    func(node, nodeCount, parentCount);
+
+    let nextID = nodeCount + 1;
+
+    // Recurse through all children of this node.
+    if (has(node, 'children')) {
+      node.children.forEach(child => {
+        nextID = PhylogenyWrapper.recurseNodes(child, func, nextID, nodeCount);
+      });
+    }
+
+    return nextID;
+  }
+
+  getTaxonomicUnits(nodeType = 'both') {
+    // Return a list of all taxonomic units in this phylogeny.
+    // Node labels will be extracted from:
+    //  - internal nodes only (if nodeType == 'internal')
+    //  - terminal nodes only (if nodeType == 'terminal')
+    //  - both internal and terminal nodes (if nodeType == 'both')
+    //
+    // See `getTaxonomicUnitsForNodeLabel` to see how node labels are converted
+    // into node labels, but in brief:
+    //  1. We look for taxonomic units in the additionalNodeProperties.
+    //  2. If none are found, we attempt to parse the node label as a scientific name.
+    //
+    const nodeLabels = this.getNodeLabels(nodeType);
+    const tunits = new Set();
+
+    nodeLabels.forEach(nodeLabel => {
+      this.getTaxonomicUnitsForNodeLabel(nodeLabel).forEach(tunit => {
+        tunits.add(tunit);
+      });
+    });
+
+    return tunits;
+  }
+
+  getNodeLabels(nodeType = 'both') {
+    // Return a list of all the node labels in this phylogeny.
+    //
+    // nodeType can be one of:
+    // - 'internal': Return node labels on internal nodes.
+    // - 'terminal': Return node labels on terminal nodes.
+    // - 'both': Return node labels on both internal and terminal nodes.
+
+    // Parse the phylogeny (will throw an exception if parsing failed).
+    const { graph } = newickJs.parse(this.phylogeny.newick || '()');
+    const [vertices, arcs] = graph;
+
+    if (nodeType === 'both') {
+      // Return all node labels.
+      return Array.from(
+        new Set(
+          Array.from(vertices)
+            .map(vertex => vertex.label)
+            .filter(label => label !== undefined),
+        ),
+      );
+    }
+
+    if (nodeType === 'internal') {
+      // Return the internal nodes (those with atleast one child).
+      return Array.from(
+        new Set(
+          Array.from(arcs)
+            .map(arc => arc[0].label) // Retrieve the label of the parent vertex in this arc.
+            .filter(label => label !== undefined),
+        ),
+      );
+    }
+
+    if (nodeType === 'terminal') {
+      // Return the terminal nodes. This would require calculating the children
+      // of every vertex in the graph and then identifying vertices without any
+      // children.
+      //
+      // A quicker and dirtier way to do this is by removing internal labels
+      // from the list of all node labels. This will report an incorrect result
+      // if an internal node has the same label as a terminal node, but at that
+      // point a lot of other assumptions are going to fail, too, so this is
+      // probably good enough for now.
+      const allLabels = this.getNodeLabels('both');
+      const internalLabels = new Set(this.getNodeLabels('internal'));
+
+      return allLabels.filter(label => !internalLabels.has(label));
+    }
+
+    throw new Error(`Unknown nodeType: '${nodeType}'`);
+  }
+
+  /**
+   * Return a list of taxonomic units for a node label.
+   *
+   * If the additionalNodeProperties for this node label includes taxonomic units
+   * (using `representsTaxonomicUnits` = obo:CDAO_0000187), then those taxonomic
+   * units are used. Otherwise, one will be constructed using the default
+   * nomenclatural code set up when this PhylogenyWrapper was set up.
+   */
+  getTaxonomicUnitsForNodeLabel(nodeLabel) {
+    // Look up additional node properties.
+    let additionalNodeProperties = {};
+    if (
+      has(this.phylogeny, 'additionalNodeProperties') &amp;&amp;
+      has(this.phylogeny.additionalNodeProperties, nodeLabel)
+    ) {
+      additionalNodeProperties =
+        this.phylogeny.additionalNodeProperties[nodeLabel];
+    }
+
+    // If there are explicit taxonomic units in the
+    // representsTaxonomicUnits property, we need to use those.
+    if (has(additionalNodeProperties, 'representsTaxonomicUnits')) {
+      return additionalNodeProperties.representsTaxonomicUnits;
+    }
+
+    // If that doesn't work, we can try to extract scientific names from
+    // the node label. Note that taxonomic units will NOT be extracted from
+    // the label if there is a taxonomic unit present!
+    //
+    // Note that old-style taxonomic units were lists while new-style taxonomic
+    // units are single objects. So we turn it into a single entry list here.
+    const tunit = TaxonomicUnitWrapper.fromLabel(
+      nodeLabel.trim(),
+      this.defaultNomenCode,
+    );
+    if (tunit) return [tunit];
+    return []; // No TUnit? Return the empty list.
+  }
+
+  getNodeLabelsMatchedBySpecifier(specifier) {
+    // Return a list of node labels matched by a given specifier on
+    // a given phylogeny.
+
+    return this.getNodeLabels().filter(nodeLabel => {
+      // Find all the taxonomic units associated with the specifier and
+      // with the node.
+      const nodeTUnits = this.getTaxonomicUnitsForNodeLabel(nodeLabel);
+
+      // Attempt pairwise matches between taxonomic units in the specifier
+      // and associated with the node.
+      return nodeTUnits.some(
+        tunit => new TaxonomicUnitMatcher(specifier, tunit).matched,
+      );
+    });
+  }
+
+  static getParsedNewick(newick) {
+    // We previously used phylotree.js's Newick parser to parse Newick into a
+    // tree-like structure. However, this is difficult to integrate using NPM.
+    // This method provides a similar facility using the newick-js library.
+    //
+    // Throws an exception if the Newick could not be parsed.
+    const { graph, root, rootWeight } = newickJs.parse(newick);
+    const [, arcs] = graph;
+
+    // Go through the arcs, assigning 'children' to the appropriate parent node.
+    arcs.forEach(arc => {
+      const [parent, child, weight] = arc;
+
+      // Add child to parent.children.
+      if (!has(parent, 'children')) parent.children = [];
+      parent.children.push(child);
+
+      // Phylotree.js uses 'name' instead of 'label'.
+      if (has(parent, 'label')) {
+        parent.name = parent.label;
+      }
+      if (has(child, 'label')) {
+        child.name = child.label;
+      }
+
+      // Phylotree.js uses 'attribute' to store weights, so we'll store it there as well.
+      if (!has(child, 'attribute') &amp;&amp; !Number.isNaN(weight))
+        child.attribute = weight;
+    });
+
+    // Set root 'attribute' to root weight.
+    if (!has(root, 'attribute') &amp;&amp; !Number.isNaN(rootWeight))
+      root.attribute = rootWeight;
+
+    return { json: root };
+  }
+
+  getParsedNewickWithIRIs(
+    baseIRI,
+    newickParser = PhylogenyWrapper.getParsedNewick,
+  ) {
+    // Return the parsed Newick string, but with EVERY node given an IRI.
+    // - baseIRI: The base IRI to use for node elements (e.g. ':phylogeny1').
+    //   Node IDs are generated by concatenating `_node${number}` to the end of
+    //   the baseIRI.
+    // - newickParser: A method for converting a Newick string to a object-based
+    //   representation. The static method PhylogenyWrapper.getParsedNewick() is
+    //   used if none is provided.
+
+    const parsed = newickParser(this.phylogeny.newick || '()');
+    if (has(parsed, 'json')) {
+      PhylogenyWrapper.recurseNodes(parsed.json, (node, nodeCount) => {
+        // Start with the additional node properties.
+        const nodeAsJSONLD = node;
+
+        // Set @id and @type.
+        const nodeIRI = `${baseIRI}_node${nodeCount}`;
+        nodeAsJSONLD['@id'] = nodeIRI;
+      });
+    }
+
+    return parsed;
+  }
+
+  getNodesAsJSONLD(baseIRI, newickParser) {
+    // Returns a list of all nodes in this phylogeny as a series of nodes.
+    // - baseIRI: The base IRI to use for node elements (e.g. ':phylogeny1').
+    //   Node IDs are generated by concatenating `_node${number}` to the end of
+    //   the baseIRI.
+    // - newickParser: A method for converting a Newick string to a object-based
+    //   representation. See PhylogenyWrapper.getParsedNewick() for an example
+    //   implementation.
+
+    // List of nodes we have identified.
+    const nodes = [];
+
+    // We need to track the identifiers we give each node as we go.
+    const nodesById = {};
+    const nodeIdsByParentId = {};
+
+    // Extract the newick string.
+    const { additionalNodeProperties } = this.phylogeny;
+
+    // Parse the Newick string; if parseable, recurse through the nodes,
+    // added them to the list of JSON-LD nodes as we go.
+
+    const parsed = this.getParsedNewickWithIRIs(baseIRI, newickParser);
+    if (has(parsed, 'json')) {
+      PhylogenyWrapper.recurseNodes(
+        parsed.json,
+        (node, _nodeCount, parentCount) => {
+          // Start with the additional node properties.
+          const nodeAsJSONLD = {};
+
+          // Set @id and @type. '@id' should already be set by getParsedNewickWithIRIs()!
+          const nodeIRI = node['@id'];
+          nodeAsJSONLD['@id'] = nodeIRI;
+
+          // Since we may need to add multiple classes into the rdf:type, we need
+          // to make @type an array. However, the JSON-LD library we use in JPhyloRef
+          // can't support @type being an array (despite that being in the standard,
+          // see https://w3c.github.io/json-ld-syntax/#example-14-specifying-multiple-types-for-a-node),
+          // so we fall back to using rdf:type instead.
+          nodeAsJSONLD[owlterms.RDF_TYPE] = [{ '@id': owlterms.CDAO_NODE }];
+
+          // Add labels, additional node properties and taxonomic units.
+          if (has(node, 'name') &amp;&amp; node.name !== '') {
+            // Add node label.
+            nodeAsJSONLD.labels = [node.name];
+
+            // Add additional node properties, if any.
+            if (
+              additionalNodeProperties &amp;&amp;
+              has(additionalNodeProperties, node.name)
+            ) {
+              Object.keys(additionalNodeProperties[node.name]).forEach(key => {
+                nodeAsJSONLD[key] = additionalNodeProperties[node.name][key];
+              });
+            }
+
+            // Add taxonomic units into the metadata.
+            nodeAsJSONLD.representsTaxonomicUnits =
+              this.getTaxonomicUnitsForNodeLabel(node.name);
+
+            // Add it into the @type so we can reason over it.
+            nodeAsJSONLD.representsTaxonomicUnits.forEach(tu => {
+              const wrappedTUnit = new TaxonomicUnitWrapper(tu);
+
+              if (wrappedTUnit) {
+                const equivClass = wrappedTUnit.asOWLEquivClass;
+                if (equivClass) {
+                  nodeAsJSONLD[owlterms.RDF_TYPE].push({
+                    '@type': 'owl:Restriction',
+                    onProperty: owlterms.CDAO_REPRESENTS_TU,
+                    someValuesFrom: equivClass,
+                  });
+                }
+              }
+            });
+          }
+
+          // Add references to parents and siblings.
+          if (parentCount !== undefined) {
+            const parentIRI = `${baseIRI}_node${parentCount}`;
+            nodeAsJSONLD.parent = parentIRI;
+
+            // Update list of nodes by parent IDs.
+            if (!has(nodeIdsByParentId, parentIRI)) {
+              nodeIdsByParentId[parentIRI] = new Set();
+            }
+            nodeIdsByParentId[parentIRI].add(nodeIRI);
+          }
+
+          // Add nodeAsJSONLD to list
+          if (has(nodesById, nodeIRI)) {
+            throw new Error(
+              `Error in programming: duplicate node IRI generated (${nodeIRI})`,
+            );
+          }
+          nodesById[nodeIRI] = nodeAsJSONLD;
+          nodes.push(nodeAsJSONLD);
+        },
+      );
+    }
+
+    // Go through nodes again and set children and sibling relationships.
+    Object.keys(nodeIdsByParentId).forEach(parentId => {
+      // What are the children of this parentId?
+      const childrenIDs = Array.from(nodeIdsByParentId[parentId]);
+      const children = childrenIDs.map(childId => nodesById[childId]);
+
+      // Is this the root node?
+      if (has(nodesById, parentId)) {
+        const parent = nodesById[parentId];
+        parent.children = childrenIDs;
+      }
+
+      children.forEach(child => {
+        const childToModify = child;
+        // Add all other sibling to node.siblings, but don't add this node itself!
+        childToModify.siblings = childrenIDs.filter(
+          childId => childId !== child['@id'],
+        );
+      });
+    });
+
+    return nodes;
+  }
+
+  asJSONLD(fallbackIRI, newickParser) {
+    // Export this phylogeny as JSON-LD.
+    // - fallbackIRI: The fallback IRI to use for this phylogeny if it does not
+    //   already have an '@id' set.
+    // - newickParser: A function that parses a Newick string and returns a
+    //   an object based representation of this phylogeny. If not set, the
+    //   static method PhylogenyWrapper.getParsedNewick will be used instead.
+
+    // Create a copy to export.
+    const phylogenyAsJSONLD = JSON.parse(JSON.stringify(this.phylogeny));
+
+    // Set name and class for phylogeny. If no '@id' is set, use the provided
+    // fallbackIRI.
+    if (!has(phylogenyAsJSONLD, '@id')) phylogenyAsJSONLD['@id'] = fallbackIRI;
+    phylogenyAsJSONLD['@type'] = 'phyloref:ReferencePhylogenyEvidence';
+
+    // Translate nodes into JSON-LD objects.
+    phylogenyAsJSONLD.nodes = this.getNodesAsJSONLD(
+      phylogenyAsJSONLD['@id'],
+      newickParser,
+    );
+    if (phylogenyAsJSONLD.nodes.length > 0) {
+      // We don't have a better way to identify the root node, so we just
+      // default to the first one.
+      phylogenyAsJSONLD.hasRootNode = {
+        '@id': phylogenyAsJSONLD.nodes[0]['@id'],
+      };
+    }
+
+    // Add a bibliographicCitation to the source if it is a Citation.
+    if (has(phylogenyAsJSONLD, 'source')) {
+      const source = phylogenyAsJSONLD.source;
+
+      if (!has(source, 'bibliographicCitation')) {
+        source.bibliographicCitation = new CitationWrapper(source).toString();
+      }
+    }
+
+    return phylogenyAsJSONLD;
+  }
+}
+
+module.exports = {
+  PhylogenyWrapper,
+};
+</code></pre></div></div></div></main></div><footer>phyx.js — Phyloreference Exchange format library</footer></div><script type="application/json" data-island-props>{"i0":{"language":"javascript","filename":"wrappers/PhylogenyWrapper.js"},"i1":{"basePath":"/phyx.js","searchIndexUrl":"/phyx.js/_assets/search-index.mrvs2v6p-6e0e03f0.json"},"i2":{},"i3":{},"i4":{"nav":[{"label":"GitHub","href":"https://github.com/phyloref/phyx.js","external":true,"icon":"lucide:external-link","menu":true,"order":0},{"label":"npm","href":"https://www.npmjs.com/package/@phyloref/phyx","external":true,"icon":"lucide:external-link","menu":true,"order":1},{"label":"Changelog","slug":"tutorials/changelog","group":"Tutorials","order":0},{"label":"Introduction to phyx.js","slug":"tutorials/introduction","group":"Tutorials","order":0},{"label":"CacheManager","slug":"cachemanager","group":"Classes","order":1},{"label":"CitationWrapper","slug":"citationwrapper","group":"Classes","order":1},{"label":"PhylorefWrapper","slug":"phylorefwrapper","group":"Classes","order":1},{"label":"PhyxWrapper","slug":"phyxwrapper","group":"Classes","order":1},{"label":"SpecimenWrapper","slug":"specimenwrapper","group":"Classes","order":1},{"label":"TaxonConceptWrapper","slug":"taxonconceptwrapper","group":"Classes","order":1},{"label":"TaxonNameWrapper","slug":"taxonnamewrapper","group":"Classes","order":1},{"label":"TaxonomicUnitMatcher","slug":"taxonomicunitmatcher","group":"Classes","order":1},{"label":"TaxonomicUnitWrapper","slug":"taxonomicunitwrapper","group":"Classes","order":1}],"currentSlug":"source/wrappers/phylogenywrapper-js","siteName":"@phyloref/phyx.js","basePath":"/phyx.js"},"i5":{"nav":[{"label":"GitHub","href":"https://github.com/phyloref/phyx.js","external":true,"icon":"lucide:external-link","menu":true,"order":0},{"label":"npm","href":"https://www.npmjs.com/package/@phyloref/phyx","external":true,"icon":"lucide:external-link","menu":true,"order":1},{"label":"Changelog","slug":"tutorials/changelog","group":"Tutorials","order":0},{"label":"Introduction to phyx.js","slug":"tutorials/introduction","group":"Tutorials","order":0},{"label":"CacheManager","slug":"cachemanager","group":"Classes","order":1},{"label":"CitationWrapper","slug":"citationwrapper","group":"Classes","order":1},{"label":"PhylorefWrapper","slug":"phylorefwrapper","group":"Classes","order":1},{"label":"PhyxWrapper","slug":"phyxwrapper","group":"Classes","order":1},{"label":"SpecimenWrapper","slug":"specimenwrapper","group":"Classes","order":1},{"label":"TaxonConceptWrapper","slug":"taxonconceptwrapper","group":"Classes","order":1},{"label":"TaxonNameWrapper","slug":"taxonnamewrapper","group":"Classes","order":1},{"label":"TaxonomicUnitMatcher","slug":"taxonomicunitmatcher","group":"Classes","order":1},{"label":"TaxonomicUnitWrapper","slug":"taxonomicunitwrapper","group":"Classes","order":1}],"currentSlug":"source/wrappers/phylogenywrapper-js","basePath":"/phyx.js"}}</script><script type="module">(function(){var map={"theme-toggle":"/phyx.js/_islands/theme-toggle-CMRFSRBJ.js","settings":"/phyx.js/_islands/settings-KARNAUWX.js","code-viewer":"/phyx.js/_islands/code-viewer-P436CSBA.js","embed":"/phyx.js/_islands/embed-RKVGI6ER.js","playground":"/phyx.js/_islands/playground-VR5VFEJF.js","tabs":"/phyx.js/_islands/tabs-NRSQKCSU.js","sidebar":"/phyx.js/_islands/sidebar-SOTLYXIU.js","mobile-nav":"/phyx.js/_islands/mobile-nav-CA4NZBMS.js","toc":"/phyx.js/_islands/toc-IPWEN5RR.js","toc-mobile":"/phyx.js/_islands/toc-mobile-TCJQ7CDT.js","cmdk":"/phyx.js/_islands/cmdk-YCTXKP7F.js","code-tabs":"/phyx.js/_islands/code-tabs-Z3526J2L.js","copy-btn":"/phyx.js/_islands/copy-btn-XK6QIFI5.js","copy-page":"/phyx.js/_islands/copy-page-WIJTQWPZ.js"};var seen=new Set();document.querySelectorAll('[data-island]').forEach(function(el){seen.add(el.getAttribute('data-island'));});seen.forEach(function(name){var src=map[name];if(src){import(src);}});})();</script><script>(function(){function flash(h){var b=h.querySelector('[data-heading-anchor]');if(!b)return;b.setAttribute('data-copied','');window.setTimeout(function(){b.removeAttribute('data-copied');},3000);}function onClick(e){var t=e.target;if(!t||!t.closest)return;if(t.closest('a'))return;var h=t.closest('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');if(!h)return;var id=h.id;if(!id)return;var iconOnly=!!t.closest('[data-heading-anchor]');if(!iconOnly){if(location.hash.slice(1)===id){h.scrollIntoView();}else{location.hash=id;}}try{var url=location.origin+location.pathname+location.search+'#'+id;if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){flash(h);}).catch(function(){});}}catch(_){}}document.addEventListener('click',onClick);}());</script><script>(function(){var IDLE=700;var timers=new WeakMap();function onScroll(e){var el=e.target;if(el===document||el===window)el=document.documentElement;if(!el||!el.classList)return;el.classList.add('clean-scrolling');var prev=timers.get(el);if(prev)window.clearTimeout(prev);timers.set(el,window.setTimeout(function(){el.classList.remove('clean-scrolling');},IDLE));}document.addEventListener('scroll',onScroll,true);}());</script></body></html>

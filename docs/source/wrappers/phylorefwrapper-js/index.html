@@ -1,0 +1,923 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="generator" content="clean-jsdoc-theme 5.0.8" /><title>wrappers/PhylorefWrapper.js | @phyloref/phyx.js</title><script>(function(){try{var d=document.documentElement;var t=localStorage.getItem('theme');if(t==='dark'){d.dataset.theme='dark'}else{d.dataset.theme='light'}var fs=localStorage.getItem('clean-font-size');if(fs==='sm'){d.style.fontSize='15px'}else if(fs==='lg'){d.style.fontSize='18px'}var ls=localStorage.getItem('clean-line-spacing');if(ls==='compact'){d.style.setProperty('--clean-line-height','1.4')}else if(ls==='relaxed'){d.style.setProperty('--clean-line-height','1.8')}}catch(_){}}());</script><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;600;700&amp;family=Roboto:wght@400;500;600;700&amp;display=swap" /><link rel="stylesheet" href="/phyx.js/_assets/styles.mrvs2v6p-6e0e03f0.css" /></head><body><div class="flex min-h-screen flex-col bg-background text-(--clean-fg)"><header class="sticky top-0 z-30 border-b border-(--clean-border) bg-background"><div class="mx-auto flex h-16 w-full min-w-0 max-w-screen-2xl items-center gap-4 px-4"><a href="/phyx.js" class="flex min-w-0 items-center pl-3 no-underline"><span class="truncate text-lg font-heading font-bold text-(--clean-fg)">@phyloref/phyx.js</span></a><div class="ml-auto flex shrink-0 items-center gap-1"><div class="flex items-center gap-1"><div data-island="cmdk" data-island-id="i1"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-muted-foreground hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Search" title="Search (Ctrl K)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg></button></div></div><div class="hidden items-center gap-1 md:flex"><div data-island="theme-toggle" data-island-id="i2"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-muted-foreground hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button" aria-label="Switch to dark theme" title="Toggle theme"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button></div><div data-island="settings" data-island-id="i3"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-muted-foreground hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Settings" title="Settings"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"></path><circle cx="12" cy="12" r="3"></circle></svg></button></div></div><div class="md:hidden"><div data-island="mobile-nav" data-island-id="i4"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-muted-foreground hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Open navigation" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-right" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M15 3v18"></path></svg></button></div></div></div></div></header><div class="mx-auto grid w-full max-w-screen-2xl flex-1 grid-cols-1 gap-6 px-4 py-6 md:grid-cols-[16rem_minmax(0,1fr)]"><aside class="hidden md:block"><div class="sticky overflow-y-auto [scrollbar-gutter:stable] pr-2 top-20 max-h-[calc(100vh-6rem)]"><div data-island="sidebar" data-island-id="i5"><nav aria-label="Documentation navigation" class="text-(--clean-fg)"><ul class="m-0 list-none p-0"><li class="my-0.5"><a href="https://github.com/phyloref/phyx.js" target="_blank" rel="noopener noreferrer" class="group flex gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)] items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link shrink-0" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg><span class="min-w-0 wrap-break-words">GitHub</span></a></li><li class="my-0.5"><a href="https://www.npmjs.com/package/@phyloref/phyx" target="_blank" rel="noopener noreferrer" class="group flex gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)] items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link shrink-0" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg><span class="min-w-0 wrap-break-words">npm</span></a></li></ul><hr class="my-3 border-(--clean-border)"/><div class="mt-4 first:mt-0"><div class="mb-1 py-1.5 px-3 text-sm font-bold text-(--clean-fg)">Tutorials</div><ul class="m-0 list-none p-0"><li class="my-0.5"><a href="/phyx.js/tutorials/changelog" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">Changelog</span></a></li><li class="my-0.5"><a href="/phyx.js/tutorials/introduction" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">Introduction to phyx.js</span></a></li></ul></div><div class="mt-4 first:mt-0"><div class="mb-1 py-1.5 px-3 text-sm font-bold text-(--clean-fg)">Classes</div><ul class="m-0 list-none p-0"><li class="my-0.5"><a href="/phyx.js/cachemanager" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">CacheManager</span></a></li><li class="my-0.5"><a href="/phyx.js/citationwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">CitationWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/phylorefwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">PhylorefWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/phyxwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">PhyxWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/specimenwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">SpecimenWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/taxonconceptwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">TaxonConceptWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/taxonnamewrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">TaxonNameWrapper</span></a></li><li class="my-0.5"><a href="/phyx.js/taxonomicunitmatcher" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">TaxonomicUnitMatcher</span></a></li><li class="my-0.5"><a href="/phyx.js/taxonomicunitwrapper" class="group flex items-start gap-x-3 w-full px-3 py-1.5 text-left text-sm no-underline break-words hyphens-auto overflow-hidden rounded-xl outline-offset-[-1px] cursor-pointer text-[var(--clean-fg)] hover:bg-[var(--clean-bg-muted)]"><span class="min-w-0 wrap-break-words">TaxonomicUnitWrapper</span></a></li></ul></div></nav></div></div></aside><main class="min-w-0 px-4 md:px-8 lg:px-12"><div data-island="code-viewer" data-island-id="i0"><div class="my-4 overflow-hidden rounded-lg border border-(--clean-border) bg-(--clean-bg)"><div class="flex items-center justify-between border-b border-(--clean-border) bg-(--clean-bg-muted) px-3 py-2 text-sm"><span class="font-mono text-(--clean-fg)">wrappers/PhylorefWrapper.js</span><span class="text-xs text-(--clean-fg-muted)">javascript</span></div><div class="h-[calc(100vh-13rem)] min-h-[24rem]"><pre class="m-0 h-full overflow-auto whitespace-pre p-4 text-sm leading-relaxed text-(--clean-fg)"><code class="language-javascript">// Used to parse timestamps for phyloref statuses.
+const moment = require('moment');
+const { has, cloneDeep, uniq } = require('lodash');
+
+const owlterms = require('../utils/owlterms');
+const { TaxonomicUnitWrapper } = require('./TaxonomicUnitWrapper');
+const { TaxonConceptWrapper } = require('./TaxonConceptWrapper');
+const { PhylogenyWrapper } = require('./PhylogenyWrapper');
+const { CitationWrapper } = require('./CitationWrapper');
+
+/**
+ * Wraps a phyloreference in a Phyx model, with multiple specifiers and statuses. Includes code for generating the
+ * components of a phyloreference expression in OWL.
+ */
+
+class PhylorefWrapper {
+  // Wraps a phyloreference in a PHYX model.
+
+  constructor(phyloref, phyxDefaultNomenCode = owlterms.UNKNOWN_CODE) {
+    // Wraps the provided phyloreference
+    this.phyloref = phyloref;
+    this.phyxDefaultNomenCode = phyxDefaultNomenCode;
+  }
+
+  /**
+   * Return the internal specifiers of this phyloref. If the phyloref doesn't have
+   * any, an empty list is stored on it and returned, so that callers can add
+   * specifiers by pushing onto it.
+   */
+  get internalSpecifiers() {
+    if (!has(this.phyloref, 'internalSpecifiers')) {
+      // If there isn't one, create an empty list so that the caller can do
+      // `wrappedPhyloref.internalSpecifiers.push({...})`.
+      this.phyloref.internalSpecifiers = [];
+    }
+
+    return this.phyloref.internalSpecifiers;
+  }
+
+  /**
+   * Normalize a phyloreference.
+   *
+   * @param phyloref
+   */
+  static normalize(phyloref) {
+    const normalizedPhyloref = cloneDeep(phyloref);
+
+    normalizedPhyloref.internalSpecifiers = (
+      phyloref.internalSpecifiers || []
+    ).map(TaxonomicUnitWrapper.normalize);
+    normalizedPhyloref.externalSpecifiers = (
+      phyloref.externalSpecifiers || []
+    ).map(TaxonomicUnitWrapper.normalize);
+
+    return normalizedPhyloref;
+  }
+
+  /**
+   * Return the external specifiers of this phyloref. If the phyloref doesn't have
+   * any, an empty list is stored on it and returned, so that callers can add
+   * specifiers by pushing onto it.
+   */
+  get externalSpecifiers() {
+    if (!has(this.phyloref, 'externalSpecifiers')) {
+      // If there isn't one, create an empty list so that the caller can do
+      // `wrappedPhyloref.externalSpecifiers.push({...})`.
+      this.phyloref.externalSpecifiers = [];
+    }
+
+    return this.phyloref.externalSpecifiers;
+  }
+
+  /**
+   * Return a label for this phyloreference: its `label` if it has one, failing
+   * that the first of its `labels`, failing that its `title`. Setting this
+   * always writes to `label`.
+   */
+  get label() {
+    if (has(this.phyloref, 'label')) return this.phyloref.label;
+    if (has(this.phyloref, 'labels') &amp;&amp; this.phyloref.labels.length > 0)
+      return this.phyloref.labels[0];
+    if (has(this.phyloref, 'title')) return this.phyloref.title;
+
+    return undefined;
+  }
+
+  /**
+   * Set a label for this phyloreference.
+   * @ignore
+   */
+  set label(newLabel) {
+    if (has(this.phyloref, 'label')) {
+      this.phyloref.label = newLabel;
+    } else {
+      // Vue.set(this.phyloref, 'label', newLabel);
+      this.phyloref.label = newLabel;
+    }
+  }
+
+  /** Return all the specifiers of this phyloref (if any). */
+  get specifiers() {
+    // Returns a list of all specifiers by combining the internal and external
+    // specifiers into a single list, with internal specifiers before
+    // external specifiers.
+    let specifiers = this.internalSpecifiers;
+    specifiers = specifiers.concat(this.externalSpecifiers);
+    return specifiers;
+  }
+
+  getSpecifierType(specifier) {
+    // For a given specifier, return a string indicating whether it is
+    // an 'Internal' or 'External' specifier.
+
+    if (this.internalSpecifiers.includes(specifier)) return 'Internal';
+    if (this.externalSpecifiers.includes(specifier)) return 'External';
+    return 'Specifier';
+  }
+
+  setSpecifierType(specifier, specifierType) {
+    // Change the type of a given specifier. To do this, we first need
+    // to determine if it was originally an internal or external
+    // specifier, then move it into the other list.
+
+    let index;
+    if (specifierType === 'Internal') {
+      // To set a specifier to 'Internal', we might need to delete it from the
+      // list of external specifiers first.
+      index = this.externalSpecifiers.indexOf(specifier);
+      if (index !== -1) this.externalSpecifiers.splice(index, 1);
+
+      // Don't add it to the list of internal specifiers if it's already there.
+      if (!this.internalSpecifiers.includes(specifier)) {
+        this.phyloref.internalSpecifiers.unshift(specifier);
+      }
+    } else if (specifierType === 'External') {
+      // To set a specifier to 'External', we might need to delete it from the
+      // list of internal specifiers first.
+      index = this.phyloref.internalSpecifiers.indexOf(specifier);
+      if (index !== -1) this.phyloref.internalSpecifiers.splice(index, 1);
+
+      // Don't add it to the list of internal specifiers if it's already there.
+      if (!this.phyloref.externalSpecifiers.includes(specifier)) {
+        this.phyloref.externalSpecifiers.unshift(specifier);
+      }
+    } else {
+      // Neither internal nor external? Ignore.
+    }
+  }
+
+  deleteSpecifier(specifier) {
+    // Since the user interface combines specifiers into a single list,
+    // it doesn't remember if the specifier to be deleted is internal
+    // or external. We delete the intended specifier from both arrays.
+
+    if (
+      has(this.phyloref, 'internalSpecifiers') &amp;&amp;
+      this.phyloref.internalSpecifiers.length > 0
+    ) {
+      const index = this.phyloref.internalSpecifiers.indexOf(specifier);
+      if (index !== -1) this.phyloref.internalSpecifiers.splice(index, 1);
+    }
+
+    if (
+      has(this.phyloref, 'externalSpecifiers') &amp;&amp;
+      this.phyloref.externalSpecifiers.length > 0
+    ) {
+      const index = this.phyloref.externalSpecifiers.indexOf(specifier);
+      if (index !== -1) this.phyloref.externalSpecifiers.splice(index, 1);
+    }
+  }
+
+  getExpectedNodeLabels(phylogeny) {
+    // Given a phylogeny, determine which node labels we expect this phyloref to
+    // resolve to. To do this, we:
+    //  1. Find all node labels that are case-sensitively identical
+    //     to the phyloreference.
+    //  2. Find all node labels that have additionalNodeProperties with
+    //     expectedPhyloreferenceNamed case-sensitively identical to
+    //     the phyloreference.
+    const phylorefLabel = this.label;
+    const nodeLabels = new Set();
+
+    new PhylogenyWrapper(phylogeny, this.defaultNomenCode)
+      .getNodeLabels()
+      .forEach(nodeLabel => {
+        // Is this node label identical to the phyloreference name?
+        if (nodeLabel === phylorefLabel) {
+          nodeLabels.add(nodeLabel);
+        } else if (
+          has(phylogeny, 'additionalNodeProperties') &amp;&amp;
+          has(phylogeny.additionalNodeProperties, nodeLabel) &amp;&amp;
+          has(
+            phylogeny.additionalNodeProperties[nodeLabel],
+            'expectedPhyloreferenceNamed',
+          )
+        ) {
+          // Does this node label have an expectedPhyloreferenceNamed that
+          // includes this phyloreference name?
+
+          const expectedPhylorefs =
+            phylogeny.additionalNodeProperties[nodeLabel]
+              .expectedPhyloreferenceNamed;
+
+          if (expectedPhylorefs.includes(phylorefLabel)) {
+            nodeLabels.add(nodeLabel);
+          }
+        }
+      });
+
+    // Return node labels sorted alphabetically.
+    return Array.from(nodeLabels).sort();
+  }
+
+  static getStatusCURIEsInEnglish() {
+    // Return dictionary of all phyloref statuses in English
+    return {
+      'pso:draft': 'Draft',
+      'pso:final-draft': 'Final draft',
+      'pso:under-review': 'Under review',
+      'pso:submitted': 'Tested',
+      'pso:published': 'Published',
+      'pso:retracted-from-publication': 'Retracted',
+    };
+  }
+
+  getCurrentStatus() {
+    // Return a result object that contains:
+    //  - status: phyloreference status as a short URI (CURIE)
+    //  - statusInEnglish: an English representation of the phyloref status
+    //  - intervalStart: the start of the interval
+    //  - intervalEnd: the end of the interval
+
+    if (
+      has(this.phyloref, 'pso:holdsStatusInTime') &amp;&amp;
+      Array.isArray(this.phyloref['pso:holdsStatusInTime']) &amp;&amp;
+      this.phyloref['pso:holdsStatusInTime'].length > 0
+    ) {
+      // If we have any pso:holdsStatusInTime entries, pick the first one and
+      // extract the CURIE and time interval information from it.
+      const lastStatusInTime =
+        this.phyloref['pso:holdsStatusInTime'][
+          this.phyloref['pso:holdsStatusInTime'].length - 1
+        ];
+      const statusCURIE = lastStatusInTime['pso:withStatus']['@id'];
+
+      // Look for time interval information
+      let intervalStart;
+      let intervalEnd;
+
+      if (has(lastStatusInTime, 'tvc:atTime')) {
+        const atTime = lastStatusInTime['tvc:atTime'];
+        if (has(atTime, 'timeinterval:hasIntervalStartDate'))
+          intervalStart = atTime['timeinterval:hasIntervalStartDate'];
+        if (has(atTime, 'timeinterval:hasIntervalEndDate'))
+          intervalEnd = atTime['timeinterval:hasIntervalEndDate'];
+      }
+
+      // Return result object
+      return {
+        statusCURIE,
+        statusInEnglish:
+          PhylorefWrapper.getStatusCURIEsInEnglish()[statusCURIE],
+        intervalStart,
+        intervalEnd,
+      };
+    }
+
+    // If we couldn't figure out a status for this phyloref, assume it's a draft.
+    return {
+      statusCURIE: 'pso:draft',
+      statusInEnglish: PhylorefWrapper.getStatusCURIEsInEnglish()['pso:draft'],
+    };
+  }
+
+  getStatusChanges() {
+    // Return a list of status changes for a particular phyloreference
+    if (has(this.phyloref, 'pso:holdsStatusInTime')) {
+      return this.phyloref['pso:holdsStatusInTime'].map(entry => {
+        const result = {};
+
+        // Create a statusCURIE convenience field.
+        if (has(entry, 'pso:withStatus')) {
+          result.statusCURIE = entry['pso:withStatus']['@id'];
+          result.statusInEnglish =
+            PhylorefWrapper.getStatusCURIEsInEnglish()[result.statusCURIE];
+        }
+
+        // Create intervalStart/intervalEnd convenient fields
+        if (has(entry, 'tvc:atTime')) {
+          const atTime = entry['tvc:atTime'];
+          if (has(atTime, 'timeinterval:hasIntervalStartDate')) {
+            result.intervalStart = atTime['timeinterval:hasIntervalStartDate'];
+            result.intervalStartAsCalendar = moment(
+              result.intervalStart,
+            ).calendar();
+          }
+
+          if (has(atTime, 'timeinterval:hasIntervalEndDate')) {
+            result.intervalEnd = atTime['timeinterval:hasIntervalEndDate'];
+            result.intervalEndAsCalendar = moment(
+              result.intervalEnd,
+            ).calendar();
+          }
+        }
+
+        return result;
+      });
+    }
+
+    // No changes? Return an empty list.
+    return [];
+  }
+
+  setStatus(status) {
+    // Set the status of a phyloreference
+    //
+    // Check whether we have a valid status CURIE.
+    if (!has(PhylorefWrapper.getStatusCURIEsInEnglish(), status)) {
+      throw new TypeError(
+        `setStatus() called with invalid status CURIE '${status}'`,
+      );
+    }
+
+    // See if we can end the previous interval.
+    const currentTime = new Date(Date.now()).toISOString();
+
+    if (!has(this.phyloref, 'pso:holdsStatusInTime')) {
+      // Vue.set(this.phyloref, 'pso:holdsStatusInTime', []);
+      this.phyloref['pso:holdsStatusInTime'] = [];
+    }
+
+    // Check to see if there's a previous time interval we should end.
+    if (
+      Array.isArray(this.phyloref['pso:holdsStatusInTime']) &amp;&amp;
+      this.phyloref['pso:holdsStatusInTime'].length > 0
+    ) {
+      const lastStatusInTime =
+        this.phyloref['pso:holdsStatusInTime'][
+          this.phyloref['pso:holdsStatusInTime'].length - 1
+        ];
+
+      // if (!has(lastStatusInTime, 'tvc:atTime'))
+      //  Vue.set(lastStatusInTime, 'tvc:atTime', {});
+      if (!has(lastStatusInTime, 'tvc:atTime')) {
+        lastStatusInTime['tvc:atTime'] = {};
+      }
+      if (
+        !has(lastStatusInTime['tvc:atTime'], 'timeinterval:hasIntervalEndDate')
+      ) {
+        // If the last time entry doesn't already have an interval end date, set it to now.
+        lastStatusInTime['tvc:atTime']['timeinterval:hasIntervalEndDate'] =
+          currentTime;
+      }
+    }
+
+    // Create new entry.
+    this.phyloref['pso:holdsStatusInTime'].push({
+      '@type': 'http://purl.org/spar/pso/StatusInTime',
+      'pso:withStatus': { '@id': status },
+      'tvc:atTime': {
+        'timeinterval:hasIntervalStartDate': currentTime,
+      },
+    });
+  }
+
+  /**
+   * Return a list of all the unique nomenclatural codes used by this phyloreference.
+   * The default nomenclatural code used in creating the PhylorefWrapper will be used
+   * for any taxonomic units that don't have any nomenclatural code set. If any
+   * specifiers are not taxon concepts, they will be represented in the returned
+   * list as owlterms.UNKNOWN_CODE.
+   */
+  get uniqNomenCodes() {
+    return uniq(
+      this.specifiers.map(specifier => {
+        const taxonConcept = new TaxonomicUnitWrapper(
+          specifier,
+          this.phyxDefaultNomenCode,
+        ).taxonConcept;
+        if (!taxonConcept) return owlterms.UNKNOWN_CODE;
+
+        const nomenCode = new TaxonConceptWrapper(
+          taxonConcept,
+          this.phyxDefaultNomenCode,
+        ).nomenCode;
+        if (!nomenCode) return owlterms.UNKNOWN_CODE;
+
+        return nomenCode;
+      }),
+    );
+  }
+
+  /**
+   * Returns a summarized nomenclatural code for this phyloref. If all of the
+   * specifiers have either the same nomenclatural code or `undefined`,
+   * this getter will return that nomenclatural code. Otherwise, this method
+   * will return owlterms.UNKNOWN_CODE.
+   */
+  get defaultNomenCode() {
+    // Check to see if we have a single nomenclatural code to use.
+    if (this.uniqNomenCodes.length === 1) return this.uniqNomenCodes[0];
+
+    // If one or more of our specifiers have no nomenclatural code (e.g. if
+    // they are specimens), they will show up as owlterms.UNKNOWN_CODE.
+    // If we have a single nomenclatural code *apart* from all the
+    // owlterms.UNKNOWN_CODEs, then that is still usable as a default
+    // nomenclatural code for this phyloreference.
+    const uniqNomenCodesNoUnknowns = this.uniqNomenCodes.filter(
+      code => code !== owlterms.UNKNOWN_CODE,
+    );
+    if (uniqNomenCodesNoUnknowns.length === 1)
+      return uniqNomenCodesNoUnknowns[0];
+
+    return owlterms.UNKNOWN_CODE;
+  }
+
+  /**
+   * Create a component class for the set of internal and external specifiers provided.
+   * We turn this into a label (in the form `A &amp; B ~ C V D`), which we use to ensure that
+   * we don't create more than one class for a particular set of internal and external
+   * specifiers.
+   * - jsonld: The JSON-LD representation of the Phyloreference this is an component class
+   *   for. We mainly use this to retrieve its '@id'.
+   * - internalSpecifiers: The set of internal specifiers for this component class.
+   * - externalSpecifiers: The set of external specifiers for this component class.
+   * - equivClass: The equivalent class expression for this component class as a function
+   *   that returns the expression as a string.
+   * - reusePrevious (default: true): If true, we reuse previous expressions with the
+   *   same set of included and excluded specifiers. If false, we always generate a new
+   *   component class for this expression.
+   * - parentClass: If not undefined, provides a JSON-LD definition of the class to set as the
+   *   parent class of this component class. We only use the ['@id'].
+   */
+  createComponentClass(
+    jsonld,
+    internalSpecifiers,
+    externalSpecifiers,
+    equivClass,
+    reusePrevious = true,
+    parentClass = undefined,
+  ) {
+    if (internalSpecifiers.length === 0)
+      throw new Error(
+        'Cannot create component class without any internal specifiers',
+      );
+    if (internalSpecifiers.length === 1 &amp;&amp; externalSpecifiers.length === 0)
+      throw new Error(
+        'Cannot create component class with a single internal specifiers and no external specifiers',
+      );
+
+    /* Generate a label that represents this component class. */
+
+    // By default, taxonomic unit labels don't include the nomenclatural code.
+    // However, we should include that here in order to distinguish between
+    // taxonomic names in different taxonomic codes. This method generates that
+    // name for a specifier.
+    const outerThis = this;
+    function generateSpecifierName(specifier) {
+      const wrapped = new TaxonomicUnitWrapper(
+        specifier,
+        outerThis.defaultNomenCode,
+      );
+      if (!wrapped) return '(error)';
+      if (wrapped.taxonConcept) {
+        const nomenCodeDetails = new TaxonConceptWrapper(wrapped.taxonConcept)
+          .nomenCodeDetails;
+        if (nomenCodeDetails)
+          return `${wrapped.label} (${nomenCodeDetails.shortName})`;
+      }
+      return wrapped.label;
+    }
+
+    // Start with the internal specifiers, concatenated with '&amp;'.
+    const internalSpecifierLabel = internalSpecifiers
+      .map(generateSpecifierName)
+      .sort()
+      .join(' &amp; ');
+    let componentClassLabel = `(${internalSpecifierLabel}`;
+
+    if (externalSpecifiers.length === 0) {
+      componentClassLabel += ')';
+    } else {
+      // Add the external specifiers, concatenated with 'V'.
+      const externalSpecifierLabel = externalSpecifiers
+        .map(generateSpecifierName)
+        .sort()
+        .join(' V ');
+      componentClassLabel += ` ~ ${externalSpecifierLabel})`;
+    }
+
+    // process.stderr.write(`component class label: ${componentClassLabel}\n`);
+
+    // TODO We need to replace this with an actual object-based comparison,
+    // rather than trusting the labels to tell us everything.
+    if (
+      reusePrevious &amp;&amp;
+      has(this.componentClassesByLabel, componentClassLabel)
+    ) {
+      // If we see the same label again, return the previously defined component class.
+      return {
+        '@id': this.componentClassesByLabel[componentClassLabel]['@id'],
+      };
+    }
+
+    // Create a new component class for this set of internal and external specifiers.
+    this.componentClassCount += 1;
+    const componentClass = {};
+    componentClass['@id'] =
+      `${jsonld['@id']}_component${this.componentClassCount}`;
+    // process.stderr.write(`Creating new componentClass with id: ${componentClass['@id']}`);
+
+    componentClass['@type'] = 'owl:Class';
+    componentClass.label = componentClassLabel;
+    componentClass.equivalentClass = equivClass;
+    if (externalSpecifiers.length > 0)
+      componentClass.subClassOf = ['phyloref:PhyloreferenceUsingMaximumClade'];
+    else
+      componentClass.subClassOf = ['phyloref:PhyloreferenceUsingMinimumClade'];
+
+    if (parentClass) {
+      componentClass.subClassOf.push({
+        '@id': parentClass['@id'],
+      });
+    }
+
+    // Save it in the cache for later usage.
+    this.componentClassesByLabel[componentClassLabel] = componentClass;
+
+    // The first time we create a componentClass, we include it into the logical
+    // expression directly. On subsequent calls, we'll only return the `@id`
+    // (see above).
+    return componentClass;
+  }
+
+  getIncludesRestrictionForTU(tu) {
+    return {
+      '@type': 'owl:Restriction',
+      onProperty: 'phyloref:includes_TU',
+      someValuesFrom: new TaxonomicUnitWrapper(tu, this.defaultNomenCode)
+        .asOWLEquivClass,
+    };
+  }
+
+  /**
+   * Return an OWL restriction for the most recent common ancestor (MRCA)
+   * of two taxonomic units.
+   */
+  getMRCARestrictionOfTwoTUs(tu1, tu2) {
+    return {
+      '@type': 'owl:Restriction',
+      onProperty: 'obo:CDAO_0000149', // cdao:has_Child
+      someValuesFrom: {
+        '@type': 'owl:Class',
+        intersectionOf: [
+          {
+            '@type': 'owl:Restriction',
+            onProperty: 'phyloref:excludes_TU',
+            someValuesFrom: new TaxonomicUnitWrapper(tu1, this.defaultNomenCode)
+              .asOWLEquivClass,
+          },
+          this.getIncludesRestrictionForTU(tu2),
+        ],
+      },
+    };
+  }
+
+  /*
+   * Create an OWL restriction for a phyloreference made up entirely of internal
+   * specifiers.
+   *  - jsonld: the JSON-LD representation of this phyloreference in model 1.0.
+   *    We mainly use this to access the '@id' and internal and external specifiers.
+   *  - remainingInternals: all internal specifiers that have not yet been selected.
+   *  - selected: internal specifiers have been seen selected. This should initially
+   *    be [], and will be filled in when this method calls itself recursively.
+   *
+   * This method works like this:
+   *  1. We have several special cases: we fail if 0 or 1 specifiers are
+   *     provided, and we have a special representation for 2 specifiers.
+   *  2. Create an expression for the currently selected specifiers. This expression
+   *     is in the form:
+   *       has_Child some (
+   *        excludes_lineage_to some [remaining specifiers]
+   *        and [selected specifiers]
+   *       )
+   *     We generate the expressions for remaining specifiers and selected specifiers by calling
+   *     this method recursively.
+   *  3. Finally, we select another internal from the remainingInternals and generate an
+   *     expression for that selection by calling this method recursively. Note that we
+   *     only process cases where there are more remainingInternals than selected
+   *     internals -- when there are fewer, we'll just end up with the inverses of the
+   *     previous comparisons, which we'll already have covered.
+   */
+  createClassExpressionsForInternals(jsonld, remainingInternals, selected) {
+    // process.stderr.write(`@id [${jsonld['@id']}] Remaining internals:
+    // ${remainingInternals.length}, selected: ${selected.length}\n`);
+
+    // Quick special case: if we have two 'remainingInternals' and zero selecteds,
+    // we can just return the MRCA for two internal specifiers.
+    if (selected.length === 0) {
+      if (remainingInternals.length === 2) {
+        return [
+          this.getMRCARestrictionOfTwoTUs(
+            remainingInternals[0],
+            remainingInternals[1],
+          ),
+        ];
+      }
+      if (remainingInternals.length === 1) {
+        throw new Error(
+          'Cannot determine class expression for a single specifier',
+        );
+      } else if (remainingInternals.length === 0) {
+        throw new Error(
+          'Cannot determine class expression for zero specifiers',
+        );
+      }
+    }
+
+    // Step 1. If we've already selected something, create an expression for it.
+    const classExprs = [];
+    if (selected.length > 0) {
+      let remainingInternalsExpr = [];
+      if (remainingInternals.length === 1) {
+        remainingInternalsExpr = this.getIncludesRestrictionForTU(
+          remainingInternals[0],
+        );
+      } else if (remainingInternals.length === 2) {
+        remainingInternalsExpr = this.getMRCARestrictionOfTwoTUs(
+          remainingInternals[0],
+          remainingInternals[1],
+        );
+      } else {
+        remainingInternalsExpr = this.createComponentClass(
+          jsonld,
+          remainingInternals,
+          [],
+          this.createClassExpressionsForInternals(
+            jsonld,
+            remainingInternals,
+            [],
+          ),
+        );
+      }
+
+      let selectedExpr = [];
+      if (selected.length === 1) {
+        selectedExpr = this.getIncludesRestrictionForTU(selected[0]);
+      } else if (selected.length === 2) {
+        selectedExpr = this.getMRCARestrictionOfTwoTUs(
+          selected[0],
+          selected[1],
+        );
+      } else {
+        selectedExpr = this.createComponentClass(
+          jsonld,
+          selected,
+          [],
+          this.createClassExpressionsForInternals(jsonld, selected, []),
+        );
+      }
+
+      classExprs.push({
+        '@type': 'owl:Restriction',
+        onProperty: 'obo:CDAO_0000149', // cdao:has_Child
+        someValuesFrom: {
+          '@type': 'owl:Class',
+          intersectionOf: [
+            {
+              '@type': 'owl:Restriction',
+              onProperty: 'phyloref:excludes_lineage_to',
+              someValuesFrom: remainingInternalsExpr,
+            },
+            selectedExpr,
+          ],
+        },
+      });
+    }
+
+    // Step 2. Now select everything from remaining once, and start recursing through
+    // every possibility.
+    // Note that we only process cases where there are more remainingInternals than
+    // selected internals -- when there are fewer, we'll just end up with the inverses
+    // of the previous comparisons, which we'll already have covered.
+    if (
+      remainingInternals.length > 1 &amp;&amp;
+      selected.length &lt;= remainingInternals.length
+    ) {
+      remainingInternals
+        .map(newlySelected =>
+          this.createClassExpressionsForInternals(
+            jsonld,
+            // The new remaining is the old remaining minus the selected TU.
+            remainingInternals.filter(i => i !== newlySelected),
+            // The new selected is the old selected plus the selected TU.
+            selected.concat([newlySelected]),
+          ),
+        )
+        .reduce((acc, val) => acc.concat(val), [])
+        .forEach(expr => {
+          classExprs.push(expr);
+        });
+    }
+
+    return classExprs;
+  }
+
+  /*
+   * Phyloref.asJSONLD(fallbackIRI)
+   *
+   * Export this phylogeny as JSON-LD.
+   *
+   * Arguments:
+   *  - fallbackIRI: The base IRI to use for this phyloref if it does not have
+   *    an '@id'.
+   */
+  asJSONLD(fallbackIRI) {
+    // Keep all currently extant data.
+    const phylorefAsJSONLD = cloneDeep(this.phyloref);
+
+    // Set the @id and @type. If we don't already have an '@id', use the
+    // fallbackIRI.
+    if (!has(phylorefAsJSONLD, '@id')) phylorefAsJSONLD['@id'] = fallbackIRI;
+    phylorefAsJSONLD['@type'] = 'owl:Class';
+
+    // If we don't have a bibliographicCitation but we do have a definition source,
+    // then generate a bibliographicCitation for the source.
+    if (has(phylorefAsJSONLD, 'definitionSource')) {
+      const definitionSource = phylorefAsJSONLD.definitionSource;
+      if (!has(definitionSource, 'bibliographicCitation')) {
+        definitionSource.bibliographicCitation = new CitationWrapper(
+          definitionSource,
+        ).toString();
+      }
+    }
+
+    // Construct a class expression for this phyloreference.
+    const internalSpecifiers = phylorefAsJSONLD.internalSpecifiers || [];
+    const externalSpecifiers = phylorefAsJSONLD.externalSpecifiers || [];
+
+    // If it is an apomorphy-based class expression, we should generate a
+    // logical expression that describes the apomorphy.
+    const phylorefType = phylorefAsJSONLD.phylorefType;
+    if (
+      (phylorefType &amp;&amp;
+        phylorefType === 'phyloref:PhyloreferenceUsingApomorphy') ||
+      has(phylorefAsJSONLD, 'apomorphy')
+    ) {
+      // This is an apomorphy-based definition!
+      phylorefAsJSONLD.subClassOf = [
+        'phyloref:Phyloreference',
+        'phyloref:PhyloreferenceUsingApomorphy',
+      ];
+
+      // Someday, we will probably want to turn this apomorphy into a
+      // logical expression so that it can be computed alongside other
+      // OWL ontologies. This is outside our scope for the moment, so
+      // we will simply pass on the phyloreference as-is.
+
+      return phylorefAsJSONLD;
+    }
+
+    // We might need to make component classes.
+    // So we reset our component class counts and records.
+    this.componentClassCount = 0;
+    this.componentClassesByLabel = {};
+
+    // The type of this phyloreference.
+    let calculatedPhylorefType;
+
+    // The list of logical expressions generated for this phyloref.
+    let logicalExpressions = [];
+
+    if (internalSpecifiers.length === 0) {
+      // We can't handle phyloreferences without at least one internal specifier.
+      calculatedPhylorefType = 'phyloref:MalformedPhyloreference';
+      phylorefAsJSONLD.malformedPhyloreference =
+        'No internal specifiers provided';
+    } else if (externalSpecifiers.length > 0) {
+      calculatedPhylorefType = 'phyloref:PhyloreferenceUsingMaximumClade';
+
+      // If the phyloreference has at least one external specifier, we
+      // can provide a simplified expression for the internal specifier,
+      // in the form:
+      //  phyloref:includes_TU some [internal1] and
+      //  phyloref:includes_TU some [internal2] and ...
+      //  phyloref:excludes_TU some [exclusion1] and
+      //  has_Ancestor some (phyloref:excludesTU some [exclusion2]) ...
+      //
+      // Since we don't know which of the external specifiers will actually
+      // be the one that will be used, we need to generate logical expressions
+      // for every possibility.
+
+      logicalExpressions = externalSpecifiers.map(selectedExternal => {
+        // Add the internal specifiers.
+        const intersectionExprs = internalSpecifiers.map(sp =>
+          this.getIncludesRestrictionForTU(sp),
+        );
+
+        // Add the selected external specifier.
+        intersectionExprs.push({
+          '@type': 'owl:Restriction',
+          onProperty: 'phyloref:excludes_TU',
+          someValuesFrom: new TaxonomicUnitWrapper(
+            selectedExternal,
+            this.defaultNomenCode,
+          ).asOWLEquivClass,
+        });
+
+        // Collect all of the externals that are not selected.
+        const remainingExternals = externalSpecifiers.filter(
+          ex => ex !== selectedExternal,
+        );
+
+        // Add the remaining externals, which we assume will resolve outside of
+        // this clade.
+        remainingExternals.forEach(externalTU => {
+          intersectionExprs.push({
+            '@type': 'owl:Restriction',
+            onProperty: 'obo:CDAO_0000144', // has_Ancestor
+            someValuesFrom: {
+              '@type': 'owl:Restriction',
+              onProperty: 'phyloref:excludes_TU',
+              someValuesFrom: new TaxonomicUnitWrapper(
+                externalTU,
+                this.defaultNomenCode,
+              ).asOWLEquivClass,
+            },
+          });
+        });
+
+        return {
+          '@type': 'owl:Class',
+          intersectionOf: intersectionExprs,
+        };
+      });
+    } else {
+      calculatedPhylorefType = 'phyloref:PhyloreferenceUsingMinimumClade';
+
+      // We only have internal specifiers. We therefore need to use the algorithm in
+      // this.createClassExpressionsForInternals() to create this expression.
+      logicalExpressions = this.createClassExpressionsForInternals(
+        phylorefAsJSONLD,
+        internalSpecifiers,
+        [],
+      );
+    }
+
+    // If we have a single logical expression, we set that as an equivalentClass
+    // expression. If we have more than one, we produce multiple component classes
+    // to represent it.
+    if (logicalExpressions.length === 0) {
+      // This is fine, as long as there is an explanation in
+      // phyloref.malformedPhyloreference explaining why no logical expressions
+      // could be generated. Otherwise, throw an error.
+      if (!has(phylorefAsJSONLD, 'malformedPhyloreference')) {
+        throw new Error(
+          `Phyloref ${this.label} was generated by Phyx.js with neither logical expressions nor an explanation for the lack of logical expressions. ` +
+            'This indicates an error in the Phyx.js library. Please report this bug at https://github.com/phyloref/phyx.js/issues.',
+        );
+      }
+    } else if (logicalExpressions.length === 1) {
+      // If we have a single logical expression, then that is what this phyloref
+      // is equivalent to.
+      phylorefAsJSONLD.equivalentClass = logicalExpressions[0];
+    } else {
+      // If we have multiple logical expressions, the phyloreference can be
+      // represented by any of them. We model this by creating subclasses of
+      // the phyloreference for each logical expression -- that way, it's clear
+      // that these expressions aren't equivalent to each other (which is what
+      // caused https://github.com/phyloref/phyx.js/issues/57), but nodes
+      // resolved by any of those expressions will also be included in the
+      // phyloreference itself.
+      //
+      // Note that there are two differences from the way in which we usually call
+      // this.createComponentClass():
+      //  1. Usually, createComponentClass() reuses logical expressions with the
+      //     same sets of internal and external specifiers. That won't work here,
+      //     since *all* these logical expressions have the same specifiers. So,
+      //     we turn off caching.
+      //  2. We need to set each of these component classes to be a subclass of
+      //     this phyloreference so that it can include instances from each of the
+      //     logical expressions.
+      phylorefAsJSONLD.subClasses = logicalExpressions.map(classExpr =>
+        this.createComponentClass(
+          phylorefAsJSONLD,
+          internalSpecifiers,
+          externalSpecifiers,
+          classExpr,
+          // False in order to turn off caching by internal and external specifiers.
+          false,
+          // Make the new component class a subclass of this phyloreference.
+          phylorefAsJSONLD,
+        ),
+      );
+    }
+
+    // Every phyloreference is a subclass of phyloref:Phyloreference.
+    if (!phylorefAsJSONLD.subClassOf) phylorefAsJSONLD.subClassOf = [];
+    if (!Array.isArray(phylorefAsJSONLD.subClassOf)) {
+      phylorefAsJSONLD.subClassOf = [phylorefAsJSONLD.subClassOf];
+    }
+    phylorefAsJSONLD.subClassOf.push('phyloref:Phyloreference');
+
+    // If the this Phyloref has a phylorefType that differs from the calculated
+    // phyloref type, throw an error.
+    if (
+      has(phylorefAsJSONLD, 'phylorefType') &amp;&amp;
+      phylorefAsJSONLD.phylorefType !== calculatedPhylorefType
+    ) {
+      throw new Error(
+        `Phyloref ${this.label} has phylorefType set to '${phylorefAsJSONLD.phylorefType}', but it appears to be a '${calculatedPhylorefType}'.`,
+      );
+    }
+    phylorefAsJSONLD.subClassOf.push(calculatedPhylorefType);
+
+    return phylorefAsJSONLD;
+  }
+}
+
+module.exports = {
+  PhylorefWrapper,
+};
+</code></pre></div></div></div></main></div><footer>phyx.js — Phyloreference Exchange format library</footer></div><script type="application/json" data-island-props>{"i0":{"language":"javascript","filename":"wrappers/PhylorefWrapper.js"},"i1":{"basePath":"/phyx.js","searchIndexUrl":"/phyx.js/_assets/search-index.mrvs2v6p-6e0e03f0.json"},"i2":{},"i3":{},"i4":{"nav":[{"label":"GitHub","href":"https://github.com/phyloref/phyx.js","external":true,"icon":"lucide:external-link","menu":true,"order":0},{"label":"npm","href":"https://www.npmjs.com/package/@phyloref/phyx","external":true,"icon":"lucide:external-link","menu":true,"order":1},{"label":"Changelog","slug":"tutorials/changelog","group":"Tutorials","order":0},{"label":"Introduction to phyx.js","slug":"tutorials/introduction","group":"Tutorials","order":0},{"label":"CacheManager","slug":"cachemanager","group":"Classes","order":1},{"label":"CitationWrapper","slug":"citationwrapper","group":"Classes","order":1},{"label":"PhylorefWrapper","slug":"phylorefwrapper","group":"Classes","order":1},{"label":"PhyxWrapper","slug":"phyxwrapper","group":"Classes","order":1},{"label":"SpecimenWrapper","slug":"specimenwrapper","group":"Classes","order":1},{"label":"TaxonConceptWrapper","slug":"taxonconceptwrapper","group":"Classes","order":1},{"label":"TaxonNameWrapper","slug":"taxonnamewrapper","group":"Classes","order":1},{"label":"TaxonomicUnitMatcher","slug":"taxonomicunitmatcher","group":"Classes","order":1},{"label":"TaxonomicUnitWrapper","slug":"taxonomicunitwrapper","group":"Classes","order":1}],"currentSlug":"source/wrappers/phylorefwrapper-js","siteName":"@phyloref/phyx.js","basePath":"/phyx.js"},"i5":{"nav":[{"label":"GitHub","href":"https://github.com/phyloref/phyx.js","external":true,"icon":"lucide:external-link","menu":true,"order":0},{"label":"npm","href":"https://www.npmjs.com/package/@phyloref/phyx","external":true,"icon":"lucide:external-link","menu":true,"order":1},{"label":"Changelog","slug":"tutorials/changelog","group":"Tutorials","order":0},{"label":"Introduction to phyx.js","slug":"tutorials/introduction","group":"Tutorials","order":0},{"label":"CacheManager","slug":"cachemanager","group":"Classes","order":1},{"label":"CitationWrapper","slug":"citationwrapper","group":"Classes","order":1},{"label":"PhylorefWrapper","slug":"phylorefwrapper","group":"Classes","order":1},{"label":"PhyxWrapper","slug":"phyxwrapper","group":"Classes","order":1},{"label":"SpecimenWrapper","slug":"specimenwrapper","group":"Classes","order":1},{"label":"TaxonConceptWrapper","slug":"taxonconceptwrapper","group":"Classes","order":1},{"label":"TaxonNameWrapper","slug":"taxonnamewrapper","group":"Classes","order":1},{"label":"TaxonomicUnitMatcher","slug":"taxonomicunitmatcher","group":"Classes","order":1},{"label":"TaxonomicUnitWrapper","slug":"taxonomicunitwrapper","group":"Classes","order":1}],"currentSlug":"source/wrappers/phylorefwrapper-js","basePath":"/phyx.js"}}</script><script type="module">(function(){var map={"theme-toggle":"/phyx.js/_islands/theme-toggle-CMRFSRBJ.js","settings":"/phyx.js/_islands/settings-KARNAUWX.js","code-viewer":"/phyx.js/_islands/code-viewer-P436CSBA.js","embed":"/phyx.js/_islands/embed-RKVGI6ER.js","playground":"/phyx.js/_islands/playground-VR5VFEJF.js","tabs":"/phyx.js/_islands/tabs-NRSQKCSU.js","sidebar":"/phyx.js/_islands/sidebar-SOTLYXIU.js","mobile-nav":"/phyx.js/_islands/mobile-nav-CA4NZBMS.js","toc":"/phyx.js/_islands/toc-IPWEN5RR.js","toc-mobile":"/phyx.js/_islands/toc-mobile-TCJQ7CDT.js","cmdk":"/phyx.js/_islands/cmdk-YCTXKP7F.js","code-tabs":"/phyx.js/_islands/code-tabs-Z3526J2L.js","copy-btn":"/phyx.js/_islands/copy-btn-XK6QIFI5.js","copy-page":"/phyx.js/_islands/copy-page-WIJTQWPZ.js"};var seen=new Set();document.querySelectorAll('[data-island]').forEach(function(el){seen.add(el.getAttribute('data-island'));});seen.forEach(function(name){var src=map[name];if(src){import(src);}});})();</script><script>(function(){function flash(h){var b=h.querySelector('[data-heading-anchor]');if(!b)return;b.setAttribute('data-copied','');window.setTimeout(function(){b.removeAttribute('data-copied');},3000);}function onClick(e){var t=e.target;if(!t||!t.closest)return;if(t.closest('a'))return;var h=t.closest('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');if(!h)return;var id=h.id;if(!id)return;var iconOnly=!!t.closest('[data-heading-anchor]');if(!iconOnly){if(location.hash.slice(1)===id){h.scrollIntoView();}else{location.hash=id;}}try{var url=location.origin+location.pathname+location.search+'#'+id;if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){flash(h);}).catch(function(){});}}catch(_){}}document.addEventListener('click',onClick);}());</script><script>(function(){var IDLE=700;var timers=new WeakMap();function onScroll(e){var el=e.target;if(el===document||el===window)el=document.documentElement;if(!el||!el.classList)return;el.classList.add('clean-scrolling');var prev=timers.get(el);if(prev)window.clearTimeout(prev);timers.set(el,window.setTimeout(function(){el.classList.remove('clean-scrolling');},IDLE));}document.addEventListener('scroll',onScroll,true);}());</script></body></html>
