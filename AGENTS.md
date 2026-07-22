@@ -85,9 +85,9 @@ PHYX JSON file
 
 - **Check a failing test against an unmodified checkout before assuming you caused it.**
   `git stash -u`, re-run, `git stash pop`. See the known failure above.
-- **Don't `git add -A`.** `.DS_Store` and `.idea/` are untracked and not ignored, and generated
-  directories are only ignored on some branches — all three have been swept into a commit this
-  way. Stage explicit paths.
+- **Don't `git add -A`.** A generated directory ignored on one branch may not be ignored on
+  another — `tutorials/build/`, `site/` and the editor files now in `.gitignore` have all been
+  swept into a commit this way. Stage explicit paths.
 - **Run `npm ci` after switching branches** if their dependency sets differ; a stale
   `node_modules` shows up as confusing lint and build failures rather than as an obvious
   version mismatch.
@@ -111,6 +111,11 @@ The three steps are:
 2. `jsdoc --configure jsdoc.json` builds the site into `site/`, emptying it first.
 3. `postdocs` copies `context/` into `site/context/` — the published JSON-LD contexts and JSON Schemas are served from the documentation site — and creates `site/.nojekyll`, without which GitHub Pages would ignore the theme's `_assets/` and `_islands/` directories.
 
+`context/README.md` is published at `/context/` as a prose page, so that URL keeps working: it
+used to be served by `jekyll-readme-index`, which GitHub Pages enables by default, but `.nojekyll`
+turns Jekyll off entirely. `postdocs` copies the context files in beside it, and the README's
+relative links resolve to them.
+
 **Never commit the generated site.** `site/` is gitignored and `.github/workflows/docs.yml` publishes it to the `gh-pages` branch when a release is published.
 
 ### Adding a page
@@ -125,6 +130,9 @@ Source files keep their own level-one heading — the theme renders a heading fo
 
 Most of these are silent — the build still succeeds, the page just comes out wrong:
 
+- **Don't hand-order categories.** `@category Wrappers` sorts alphabetically on its own; an
+  `order=N` suffix overrides that, but then every new class needs a number and a forgotten one
+  lands wherever the tool decides.
 - **A class without `@category` disappears from the sidebar.** `sectionOrder` lists our categories (Wrappers, Matchers, Utilities) instead of `Classes`, so an uncategorised class is published but unreachable from the navigation. `strict` does not catch this.
 - **A class's doc comment must sit immediately above the class**, below the imports. A file-header comment above the imports is close enough for jsdoc to give the class a page but not to treat the comment as the class's own, so tags on it (like `@category`) never reach the class. Both `CitationWrapper` and `PhylogenyWrapper` were broken this way.
 - **Don't put `/** */` on a top-level `require`.** jsdoc attaches a doc comment to the next code construct, so it documents the import as a global. Use `//` for notes about imports.
